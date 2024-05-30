@@ -4,20 +4,24 @@ const NewPokemon = require('../models/newPokemon');
 
 
 
+const pokemonAll = (req, res = response) => {
+
+    const pokemons = allPokemons;
+
+    res.json({
+      
+        msg: 'Listado completo de Pokémon',
+        pokemons
+    });
+    
+    console.log(pokemons);
+
+};
+
 
 const pokemonGet = (req, res = response) => {
  
 
-     /*   
-    if (id === undefined) {
-        
-        return res.json({
-            msg: 'Lista completa de Pokémon',
-            pokemons: allPokemons
-        });
-    }
-     */
-   
     const id = req.params.id; 
     
     const pokemon = allPokemons.find(p => p.id === parseInt(id)); 
@@ -28,13 +32,12 @@ const pokemonGet = (req, res = response) => {
         msg: 'Pokémon no existe' 
     });
     }
-
-    console.log(allPokemons);
     
     res.json({ 
         msg: 'Pokémon encontrado',
         pokemon
     });
+        console.log(pokemon)
 };
 
 
@@ -55,6 +58,7 @@ const pokemonPut = (req, res = response) => {
         return res.json({
             msg: 'Pokémon no encontrado'
         });
+       
     }
 
     
@@ -66,12 +70,12 @@ const pokemonPut = (req, res = response) => {
         imagen
     };
 
-    console.log(allPokemons);
-
+    
     res.json({
         msg: 'Pokémon actualizado correctamente',
         pokemon: allPokemons[pokemonIndex]
     });
+    console.log(`Pokémon actualizado: ${JSON.stringify(allPokemons[pokemonIndex])}`); 
 };
 
 
@@ -87,19 +91,16 @@ const pokemonPost = (req, res = response) => {
          });
     }
 
-
     allPokemons.push(newPokemon);   
-    
-    
-    console.log(allPokemons);
-
-
+        
     res.json({
 
         msg: 'Tu nuevo pokemon ha sido creado.',
         newPokemon
         
     }); 
+
+    console.log(newPokemon);
 };
 
 
@@ -124,11 +125,14 @@ const pokemonDelete = (req, res = response) => {
         msg: 'Pokémon eliminado correctamente',
         deletedPokemon
     });
+
+    console.log(deletedPokemon);
 };
 
 
 
 module.exports = {
+    pokemonAll,
     pokemonGet,
     pokemonPut,
     pokemonPost,

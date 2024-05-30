@@ -25,7 +25,7 @@ class Server {
     // use, palabra clave para identificar un middleware
       middlewares() {
         this.app.use( cors() ); //cors: le doy permiso a los navegadores.
-        this.app.use( express.static('public') ); //directorio publico - tengo el index y lo que los usuarios pueden ver.
+        this.app.use( express.static('public') ); //directorio publico - Tengo el index y lo que los usuarios pueden ver.
         this.app.use( express.json() ); // Lectura y parseo del body.                               
     };
 
@@ -38,6 +38,10 @@ class Server {
 
 
     listen() {
+        console.log('##########################');
+        console.log('######## API REST ########');
+        console.log('##########################');
+        console.log(`http://localhost:${this.port}/api/`);
         this.app.listen(this.port);
     };
 };
