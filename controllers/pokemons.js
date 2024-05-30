@@ -6,15 +6,15 @@ const NewPokemon = require('../models/newPokemon');
 
 const pokemonAll = (req, res = response) => {
 
-    const pokemons = allPokemons;
+    
 
     res.json({
       
         msg: 'Listado completo de Pokémon',
-        pokemons
+        allPokemons
     });
     
-    console.log(pokemons);
+    console.log(allPokemons);
 
 };
 
