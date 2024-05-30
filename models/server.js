@@ -1,9 +1,9 @@
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
+import { router } from '../routes/pokemons.js';
 
 
-
-class Server {
+export class Server {
      
     // inicializo el servidor a traves de un constructor q va a generar la instancia inicial
      constructor() {
@@ -32,7 +32,7 @@ class Server {
 
     routes() {
     
-        this.app.use( this.pokemonesPath, require('../routes/pokemons') );
+        this.app.use( this.pokemonesPath, router );
         /*Aca estoy usando un middleware*/  
     };
 
@@ -41,11 +41,10 @@ class Server {
         console.log('##########################');
         console.log('######## API REST ########');
         console.log('##########################');
-        console.log(`http://localhost:${this.port}/api/`);
+        console.log(`http://localhost:${this.port}/api/pokemones/`);
         this.app.listen(this.port);
     };
 };
 
 
 
-module.exports = Server;

@@ -1,16 +1,16 @@
-const { response, request } = require('express')/*desestructuro esta prop de express para que a la hora de tipear el res, me indique las funcionalidades porque no las reconoce sino.*/
-const allPokemons = require('../db/db'); 
-const NewPokemon = require('../models/newPokemon');
+import { response, request } from 'express';/*desestructuro esta prop de express para que a la hora de tipear el res, me indique las funcionalidades porque no las reconoce sino.*/
+import {allPokemons} from '../db/db.js';
+import {NewPokemon} from '../models/newPokemon.js';
 
 
 
-const pokemonAll = (req, res = response) => {
+export const pokemonAll = (req, res = response) => {
 
     
 
     res.json({
       
-        msg: 'Listado completo de Pokémon',
+        msg: 'Listado completo de Pokémones',
         allPokemons
     });
     
@@ -19,7 +19,7 @@ const pokemonAll = (req, res = response) => {
 };
 
 
-const pokemonGet = (req, res = response) => {
+export const pokemonGet = (req, res = response) => {
  
 
     const id = req.params.id; 
@@ -41,7 +41,7 @@ const pokemonGet = (req, res = response) => {
 };
 
 
-const pokemonPut = (req, res = response) => {
+export const pokemonPut = (req, res = response) => {
     
     const id = parseInt(req.params.id);
     const { nombre, tipo, habilidades, imagen } = req.body;
@@ -79,7 +79,7 @@ const pokemonPut = (req, res = response) => {
 };
 
 
-const pokemonPost = (req, res = response) => {
+export const pokemonPost = (req, res = response) => {
     
     const { id, nombre, tipo, habilidades, imagen } = req.body;
     
@@ -104,7 +104,7 @@ const pokemonPost = (req, res = response) => {
 };
 
 
-const pokemonDelete = (req, res = response) => {
+export const pokemonDelete = (req, res = response) => {
     
     const id = parseInt(req.params.id);
     
@@ -131,10 +131,3 @@ const pokemonDelete = (req, res = response) => {
 
 
 
-module.exports = {
-    pokemonAll,
-    pokemonGet,
-    pokemonPut,
-    pokemonPost,
-    pokemonDelete   
-};

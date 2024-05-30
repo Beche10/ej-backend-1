@@ -1,8 +1,8 @@
-const { Router } = require('express');  // Aca desestructuro la funcion router de express
-const { pokemonGet, pokemonPut, pokemonPost, pokemonDelete, pokemonAll } = require('../controllers/pokemons');
+import { Router } from 'express';  // Aca desestructuro la funcion router de express
+import { pokemonGet, pokemonPut, pokemonPost, pokemonDelete, pokemonAll } from '../controllers/pokemons.js';
 
 
-const router = Router(); // inicializo la funcion de Router
+export const router = Router(); // inicializo la funcion de Router
 
 
 router.get('/all', pokemonAll);
@@ -18,5 +18,5 @@ router.delete('/:id', pokemonDelete);
 
 
 
-module.exports = router;
+export default router;
 

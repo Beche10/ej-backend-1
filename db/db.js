@@ -1,4 +1,4 @@
-const allPokemons = [
+export const allPokemons = [
     {
         id: 1,
         nombre: "Bulbasaur",
@@ -23,4 +23,3 @@ const allPokemons = [
    
 ];
 
-module.exports = allPokemons;

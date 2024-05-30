@@ -1,4 +1,4 @@
-class NewPokemon {
+export class NewPokemon {
     
     constructor(id, nombre, tipo, habilidades, imagen) {
         this.id = id;
@@ -9,5 +9,5 @@ class NewPokemon {
     }
 }
 
-module.exports = NewPokemon;
+
 
