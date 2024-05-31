@@ -19,7 +19,7 @@ export const pokemonGet = [validatePokemonId, checkPokemonExists, (req, res = re
         msg: 'Pokémon encontrado',
         pokemon: req.pokemon
     });
-        console.log(pokemon)
+        console.log(req.pokemon)
 }];
 
 
@@ -40,7 +40,7 @@ export const pokemonPut = [validatePokemonId, checkPokemonExists, validatePokemo
         msg: 'Pokémon actualizado correctamente',
         pokemon: allPokemons[pokemonIndex]
     });
-    console.log(`Pokémon actualizado: ${JSON.stringify(allPokemons[pokemonIndex])}`); 
+    (`Pokémon actualizado: ${JSON.stringify(allPokemons[pokemonIndex])}`); 
 }];
 
 
