@@ -41,7 +41,7 @@ export class Server {
         console.log('##########################');
         console.log('######## API REST ########');
         console.log('##########################');
-        console.log(`http://localhost:${this.port}/api/pokemones/`);
+        console.log(`http://localhost:${this.port}${this.pokemonesPath}`);
         this.app.listen(this.port);
     };
 };
