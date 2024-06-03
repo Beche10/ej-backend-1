@@ -1,11 +1,11 @@
 export class NewPokemon {
     
-    constructor(id, nombre, tipo, habilidades, imagen) {
+    constructor(id, name, type, skills, image) {
         this.id = id;
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.habilidades = habilidades;
-        this.imagen = imagen;
+        this.name = name;
+        this.type = type;
+        this.skills = skills;
+        this.image = image;
     }
 }
 

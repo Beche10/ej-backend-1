@@ -1,4 +1,5 @@
 import { allPokemons } from "../db/db.js";
+import { POKEMON_TYPES } from "../constants.js"; 
 
 
 export const validatePokemonId = (req, res, next) => {
@@ -7,7 +8,7 @@ export const validatePokemonId = (req, res, next) => {
     if (isNaN(id)) {
         return res.status(400).json({ msg: 'ID de Pokémon no válido' });
     }
-    req.id = id; // Guardar el ID validado en req para usarlo en el siguiente middleware o controlador
+    req.id = id; 
     
     next();
 };
@@ -18,16 +19,26 @@ export const checkPokemonExists = (req, res, next) => {
     if (!pokemon) {
         return res.status(404).json({ msg: 'Pokémon no encontrado' });
     }
-    req.pokemon = pokemon; // Guardar el Pokémon encontrado en req para usarlo en el controlador
+    req.pokemon = pokemon; 
     
     next();
 };
 
 export const validatePokemonData = (req, res, next) => {
-    const { id, nombre, tipo, habilidades, imagen } = req.body;
-    if (!id || !nombre || !tipo || !habilidades || !imagen) {
+    const { id, name, type, skills, image } = req.body;
+    if (!id || !name || !type || !skills || !image) {
         return res.status(400).json({ msg: 'Faltan datos para crear o actualizar el Pokémon' });
     }
     
+    next();
+};
+
+export const validatePokemonType = (req, res, next) => {
+    const { type } = req.query;
+
+    if (!POKEMON_TYPES.map(t => t.toLowerCase()).includes(type.toLowerCase())) {
+        return res.status(400).json({ message: `Tipo de Pokémon inválido: ${type}` });
+    }
+
     next();
 };
