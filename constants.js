@@ -9,9 +9,10 @@ export const RESPONSE_MESSAGES = {
     POKEMON_UPDATED: 'Pokémon actualizado correctamente',
     POKEMON_CREATED: 'Tu nuevo Pokémon ha sido creado.',
     POKEMON_DELETED: 'Pokémon eliminado correctamente',
-    MISSING_DATA: 'Faltan datos para crear el nuevo Pokémon',
+    MISSING_DATA: 'Faltan datos para crear o actualizar el Pokémon',
     NO_UPDATE_DATA: 'No se ingresó ningún dato nuevo para actualizar el Pokémon',
-    INVALID_ID: 'ID de Pokémon no válido'
+    INVALID_ID: 'ID de Pokémon no válido',
+    POKEMON_TYPE_NOT_FOUND: 'No se encontraron pokémones de tipo'
 };
 
 
