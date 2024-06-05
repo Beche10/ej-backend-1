@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { router } from '../routes/pokemons.js';
+import { handleErrors } from '../utils/utils.js';
 
 
 export class Server {
@@ -26,7 +27,8 @@ export class Server {
       middlewares() {
         this.app.use( cors() ); //cors: le doy permiso a los navegadores.
         this.app.use( express.static('public') ); //directorio publico - Tengo el index y lo que los usuarios pueden ver.
-        this.app.use( express.json() ); // Lectura y parseo del body.                               
+        this.app.use( express.json() ); // Lectura y parseo del body.  
+        this.app.use( handleErrors );// Middleware para manejo global de errores                             
     };
 
 

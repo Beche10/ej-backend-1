@@ -1,22 +1,19 @@
 import { response, request } from 'express';/*desestructuro esta prop de express para que a la hora de tipear el res, me indique las funcionalidades porque no las reconoce sino.*/
 import { allPokemons } from '../db/db.js';
 import { NewPokemon } from '../models/newPokemon.js';
-import { RESPONSE_MESSAGES, HTTP_STATUS } from '../constants.js';
-
+import { RESPONSE_MESSAGES, HTTP_STATUS } from '../utils/constants.js';
+import { validationErrorResponse, formatResponse } from '../utils/utils.js';
 
 
 export const pokemonAll = (req, res = response) => {
-     res.json({
-        msg: RESPONSE_MESSAGES.LIST_ALL, /* 'Listado completo de Pokémones'*/
-        allPokemons
-    });
+    res.json(formatResponse(HTTP_STATUS.OK, RESPONSE_MESSAGES.LIST_ALL, allPokemons));
     console.log(allPokemons);
 };
 
 
 export const filterPokemonsByType = (req, res) => {
     if (req.validationError) {
-        return res.status(req.validationError.status).json({msg: req.validationError.msg });
+        return validationErrorResponse(res, req.validationError);
     }
         
     const { type } = req.query;
@@ -25,30 +22,29 @@ export const filterPokemonsByType = (req, res) => {
     );
 
     if (filteredPokemons.length === 0) {
-        return res.status(HTTP_STATUS.NOT_FOUND).json({ msg: `${RESPONSE_MESSAGES.POKEMON_TYPE_NOT_FOUND} ${type}` });
+        return res.status(HTTP_STATUS.NOT_FOUND).json(formatResponse(
+            HTTP_STATUS.NOT_FOUND,
+           `${RESPONSE_MESSAGES.POKEMON_TYPE_NOT_FOUND} ${type}`   
+        ));
     }
-    res.json(filteredPokemons);
-    
+    res.json(formatResponse(HTTP_STATUS.OK, filteredPokemons));  
 };
 
 
 export const pokemonGet = (req, res = response) => {
     if (req.validationError) {
-        return res.status(req.validationError.status).json({msg: req.validationError.msg });
+        return validationErrorResponse(res, req.validationError);
     }
     
     
-    res.json({ 
-        msg: RESPONSE_MESSAGES.POKEMON_FOUND, /*'Pokémon encontrado'*/
-        pokemon: req.pokemon
-    });
-        console.log(req.pokemon)
+    res.json(formatResponse(HTTP_STATUS.OK, RESPONSE_MESSAGES.POKEMON_FOUND, req.pokemon));
+    console.log(req.pokemon)
 };
 
 
 export const pokemonPut = (req, res = response) => {
     if (req.validationError) {
-        return res.status(req.validationError.status).json({ msg: req.validationError.msg});
+        return validationErrorResponse(res, req.validationError);
     }    
 
     const { name, type, skills, image } = req.body;
@@ -62,41 +58,33 @@ export const pokemonPut = (req, res = response) => {
         image
     };
     
-    res.json({
-        msg: RESPONSE_MESSAGES.POKEMON_UPDATED,
-        pokemon: allPokemons[pokemonIndex]
-    });    
-};
+    res.json(formatResponse(HTTP_STATUS.OK,RESPONSE_MESSAGES.POKEMON_UPDATED, allPokemons[pokemonIndex]));
+};    
 
 
 export const pokemonPost = (req, res = response) => {
     if (req.validationError) {
-        return res.status(req.validationError.status).json({ msg: req.validationError.msg});
+        return validationErrorResponse(res, req.validationError);
     }
-
 
     const { id, name, type, skills, image } = req.body;
     const newPokemon = new NewPokemon(id, name, type, skills, image);   
     allPokemons.push(newPokemon);   
         
-    res.json({
-        msg: RESPONSE_MESSAGES.POKEMON_CREATED,/*Tu nuevo pokemon ha sido creado.'*/
-        newPokemon        
-    }); 
+    res.json(validationErrorResponse(HTTP_STATUS.OK, RESPONSE_MESSAGES.POKEMON_CREATED, newPokemon)); 
     console.log(newPokemon);
 };
 
 
 export const pokemonDelete = (req, res = response) => {
-    
-    const id = parseInt(req.params.id);
+    if (req.validationError) {
+        return validationErrorResponse(res, req.validationError);
+    }
+   
     const index = allPokemons.findIndex(pokemon => pokemon.id === req.id);
     const deletedPokemon = allPokemons.splice(index, 1)[0]; 
     
-    res.json({
-        msg: RESPONSE_MESSAGES.POKEMON_DELETED, /*'Pokémon eliminado correctamente'*/
-        deletedPokemon
-    });
+    res.json(formatResponse(HTTP_STATUS.OK, RESPONSE_MESSAGES.POKEMON_DELETED, deletedPokemon));
     console.log(deletedPokemon);
 };
 
