@@ -22,7 +22,7 @@ export const formatResponse = (status, message, data = null) => {
 
 /* Responder con un error de validación */
 export const validationErrorResponse = (res, error) => {
-    return res.status(error.status).json(formatResponse(error.status, error.msg));
+    return res.status(error.status).json(formatResponse(error.status, error.msg));  
 };
 
 /* Manejo de errores */

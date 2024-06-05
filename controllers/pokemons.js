@@ -71,7 +71,7 @@ export const pokemonPost = (req, res = response) => {
     const newPokemon = new NewPokemon(id, name, type, skills, image);   
     allPokemons.push(newPokemon);   
         
-    res.json(validationErrorResponse(HTTP_STATUS.OK, RESPONSE_MESSAGES.POKEMON_CREATED, newPokemon)); 
+    res.json(formatResponse(HTTP_STATUS.OK, RESPONSE_MESSAGES.POKEMON_CREATED, newPokemon)); 
     console.log(newPokemon);
 };
 
