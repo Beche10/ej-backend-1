@@ -1,4 +1,4 @@
-import { POKEMON_TYPES, HTTP_STATUS, RESPONSE_MESSAGES } from './constants.js';
+import { POKEMON_TYPES } from './constants.js';
 
 
 export const isValidPokemonId = (id) => {
