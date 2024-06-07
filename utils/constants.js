@@ -1,5 +1,8 @@
-const DB_USER = 'admin';
-const DB_PASSWORD = 'admin123456';
+export const DATA_USER_LOGIN = {
+    DB_USER: 'admin',
+    DB_PASSWORD: 'admin123456',
+    JWT_SECRET_KEY:'asAaDaAa9189aDFgAaGjhjasdd'
+};
 
 
 export const RESPONSE_MESSAGES = {
