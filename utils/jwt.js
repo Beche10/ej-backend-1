@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { DATA_USER_LOGIN } from './constants';
 
-const createAccessToken = (user) => {
+export const createAccessToken = (user) => {
     const expToken = new Date();                     /* Seteo para que el  */ 
     expToken.setHours(expToken.getHours() + 3);      /*token expire en 3hs.*/
 
@@ -32,4 +32,6 @@ export const createRefreshToken = (user) => {
 
 };
 
-export const decoded = () => {};
+export const decoded = (token) => {
+    return jwt.decode(token, JWT_SECRET_KEY, true);
+};
