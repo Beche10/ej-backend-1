@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { DATA_USER_LOGIN } from './constants';
+import { DATA_USER_LOGIN } from '../utils/constants.js';
 
 export const createAccessToken = (user) => {
     const expToken = new Date();                     /* Seteo para que el  */ 
@@ -13,13 +13,12 @@ export const createAccessToken = (user) => {
     }
 
     return jwt.sign(payload, DATA_USER_LOGIN.JWT_SECRET_KEY); 
-
 };
 
 export const createRefreshToken = (user) => {
 
-    const expToken = new Date();                     /* Seteo para que el  */ 
-    expToken.getMonth(expToken.getMonth() + 1);      /*token expire en 3hs.*/
+    const expToken = new Date();                      
+    expToken.getMonth(expToken.getMonth() + 1);      
 
     const payload = {
         token_type: 'refresh',
@@ -29,9 +28,8 @@ export const createRefreshToken = (user) => {
     }
 
     return jwt.sign(payload, DATA_USER_LOGIN.JWT_SECRET_KEY); 
-
 };
 
 export const decoded = (token) => {
-    return jwt.decode(token, JWT_SECRET_KEY, true);
+    return jwt.decode(token, DATA_USER_LOGIN.JWT_SECRET_KEY, true);
 };

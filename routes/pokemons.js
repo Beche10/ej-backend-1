@@ -1,7 +1,7 @@
 import { Router } from 'express';  // Aca desestructuro la funcion router de express
 import { pokemonAll, filterPokemonsByType, pokemonGet, pokemonPut, pokemonPost, pokemonDelete } from '../controllers/pokemons.js';
 import { validatePokemonId, checkPokemonExists, validatePokemonData, validatePokemonType } from '../middlewares/middlewares.js';
-import { register } from '../controllers/auth.js';
+import { register, login } from '../controllers/auth.js';
 
 export const router = Router(); // inicializo la funcion de Router
 
@@ -19,6 +19,8 @@ router.post('/', validatePokemonData, pokemonPost);
 router.delete('/:id', validatePokemonId, checkPokemonExists, pokemonDelete);
 
 router.post('/auth/register', register);
+
+router.post('/auth/login', login);
 
 
 

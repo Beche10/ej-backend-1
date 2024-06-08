@@ -17,4 +17,13 @@ export class User {
     };
 };
 
-export const users = [];
+export const users = [{
+    id: 1,
+    firstname: "Augusto",
+    lastname: "Villegas",
+    email: "villevip10@gmail.com",
+    password: "123456",
+    role: "user",
+    active: true,
+    avatar: ""
+}];
