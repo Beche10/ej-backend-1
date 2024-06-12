@@ -38,7 +38,7 @@ export const login = (req, res) => {
     
     console.log('Email procesado para la busqueda:', emailLowerCase);
 
-    const user = usersDb.find(user => user.email.toLowerCase().trim() === emailLowerCase.trim());
+    const user = usersDb.find( user => user.email.toLowerCase().trim() === emailLowerCase );
     
     if (!user) return res.status(400).send({ msg: 'Usuario no encontrado' });
 
