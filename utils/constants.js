@@ -1,7 +1,7 @@
 export const DATA_USER_LOGIN = {
     DB_USER: 'admin',
     DB_PASSWORD: 'admin123456',
-    JWT_SECRET_KEY:'asAaDaAa9189aDFgAaGjhjasdd'
+    JWT_SECRET_KEY:'asAaDaAa9189aDFgAaGjhjasdd',
 };
 
 
@@ -23,7 +23,7 @@ export const HTTP_STATUS = {
     OK: 200,
     BAD_REQUEST: 400,
     NOT_FOUND: 404,
-    SERVER_ERROR:500
+    SERVER_ERROR: 500
 };
 
 

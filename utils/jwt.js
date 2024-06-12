@@ -7,7 +7,7 @@ export const createAccessToken = (user) => {
 
     const payload = {
         token_type: 'access',
-        user_id: user._id,
+        user_id: user.id,
         iat: Date.now(),
         exp: expToken.getTime(),
     }
@@ -18,11 +18,11 @@ export const createAccessToken = (user) => {
 export const createRefreshToken = (user) => {
 
     const expToken = new Date();                      
-    expToken.getMonth(expToken.getMonth() + 1);      
+    expToken.setMonth(expToken.getMonth() + 1);      
 
     const payload = {
         token_type: 'refresh',
-        user_id: user._id,
+        user_id: user.id,
         iat: Date.now(),
         exp: expToken.getTime(),
     }
