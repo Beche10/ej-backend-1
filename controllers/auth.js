@@ -62,5 +62,33 @@ export const login = (req, res) => {
             access: createAccessToken(user),
             refresh: createRefreshToken(user),
         });
-    });
+    });    
+};
+
+    export const refreshAccessToken = (req, res) => {
+        const { token } = req.body;          
+        
+        const decodedToken = decoded(token);
+
+        if(!decodedToken) {
+            return res.status(400).send({ msg: 'Token inválido o caducado' });
+        }
+
+        const { user_id } = decodedToken;
+        
+        const user = usersDb.find(user => user.id === user_id);
+
+        if(!user) {
+            return res.status(404).send({ msg: 'Usuario no encontrado' });
+        }
+
+        if(!user.active) {
+            return res.status(401).send({ msg: 'Usuario no activo' });
+        }
+
+        const newAccessToken = createAccessToken(user);
+
+        res.status(200).send({
+            accessToken: newAccessToken,
+        });        
 };

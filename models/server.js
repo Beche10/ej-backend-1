@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { router } from '../routes/pokemons.js';
 import { handleErrors } from '../utils/utils.js';
+import authRoutes from '../routes/auth.js';
 
 
 export class Server {
@@ -13,7 +14,8 @@ export class Server {
      this.app = express(); 
      this.port = process.env.PORT;  
      this.pokemonesPath = '/api/pokemones' // la reemplaze para q se pueda ver mejor y se intuya las rutas
-
+     this.authPath = '/api/pokemones/auth';
+     this.usersPath = '/api/pokemones/users';   
      
      //Middlewares - Metodos personalizados para cuando inicialice el servidor
      this.middlewares();   
@@ -34,7 +36,9 @@ export class Server {
 
     routes() {
     
-        this.app.use( this.pokemonesPath, router );
+        this.app.use(this.pokemonesPath, router);
+        this.app.use(this.authPath, router);
+        this.app.use(this.usersPath, router);
         /*Aca estoy usando un middleware*/  
     };
 
