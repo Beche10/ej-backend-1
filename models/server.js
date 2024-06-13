@@ -1,8 +1,10 @@
 import express from 'express';
 import cors from 'cors';
-import { router } from '../routes/pokemons.js';
+import { pokemonRoutes } from '../routes/pokemons.js';
 import { handleErrors } from '../utils/utils.js';
-import authRoutes from '../routes/auth.js';
+import { authRoutes } from '../routes/auth.js';
+import { usersRoutes } from '../routes/user.js';
+
 
 
 export class Server {
@@ -13,9 +15,9 @@ export class Server {
      //creando una propiedades en la clase de servidor
      this.app = express(); 
      this.port = process.env.PORT;  
-     this.pokemonesPath = '/api/pokemones' // la reemplaze para q se pueda ver mejor y se intuya las rutas
-     this.authPath = '/api/pokemones/auth';
-     this.usersPath = '/api/pokemones/users';   
+     this.pokemonesPath = '/api/pokemones' 
+     this.authPath = '/api/auth';
+     this.usersPath = '/api/users';   
      
      //Middlewares - Metodos personalizados para cuando inicialice el servidor
      this.middlewares();   
@@ -36,9 +38,9 @@ export class Server {
 
     routes() {
     
-        this.app.use(this.pokemonesPath, router);
-        this.app.use(this.authPath, router);
-        this.app.use(this.usersPath, router);
+        this.app.use(this.pokemonesPath, pokemonRoutes);
+        this.app.use(this.authPath, authRoutes);
+        this.app.use(this.usersPath, usersRoutes);
         /*Aca estoy usando un middleware*/  
     };
 
@@ -47,7 +49,7 @@ export class Server {
         console.log('##########################');
         console.log('######## API REST ########');
         console.log('##########################');
-        console.log(`http://localhost:${this.port}${this.pokemonesPath}`);
+        console.log(`http://localhost:${this.port}/`);
         this.app.listen(this.port);
     };
 };

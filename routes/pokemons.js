@@ -3,23 +3,23 @@ import { pokemonAll, filterPokemonsByType, pokemonGet, pokemonPut, pokemonPost, 
 import { validatePokemonId, checkPokemonExists, validatePokemonData, validatePokemonType } from '../middlewares/middlewares.js';
 
 
-export const router = Router(); // inicializo la funcion de Router
+export const pokemonRoutes = Router(); // inicializo la funcion de Router
 
 
-router.get('/all', pokemonAll);
+pokemonRoutes.get('/all', pokemonAll);
 
-router.get('/type', validatePokemonType, filterPokemonsByType);
+pokemonRoutes.get('/type', validatePokemonType, filterPokemonsByType);
 
-router.get('/:id', validatePokemonId, checkPokemonExists, pokemonGet);
+pokemonRoutes.get('/:id', validatePokemonId, checkPokemonExists, pokemonGet);
 
-router.put('/:id', validatePokemonId, checkPokemonExists, validatePokemonData, pokemonPut);
+pokemonRoutes.put('/:id', validatePokemonId, checkPokemonExists, validatePokemonData, pokemonPut);
 
-router.post('/', validatePokemonData, pokemonPost);
+pokemonRoutes.post('/', validatePokemonData, pokemonPost);
 
-router.delete('/:id', validatePokemonId, checkPokemonExists, pokemonDelete);
-
-
+pokemonRoutes.delete('/:id', validatePokemonId, checkPokemonExists, pokemonDelete);
 
 
-export default router;
+
+
+export default pokemonRoutes;
 
