@@ -31,5 +31,5 @@ export const createRefreshToken = (user) => {
 };
 
 export const decoded = (token) => {
-    return jwt.decode(token, DATA_USER_LOGIN.JWT_SECRET_KEY, true);
+    return jwt.decode(token.trim(), DATA_USER_LOGIN.JWT_SECRET_KEY, true);
 };
