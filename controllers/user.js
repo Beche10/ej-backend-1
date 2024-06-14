@@ -1,7 +1,7 @@
 import { usersDb } from '../models/users.js';
 
 
-export const getMe = async (req, res) => {
+export const getMe = (req, res) => {
 
     const { user_id } = req.user;
 
@@ -16,7 +16,7 @@ export const getMe = async (req, res) => {
     };
 }; 
 
-export const getUsers = async (req, res) => {
+export const getUsers = (req, res) => {
     const { active } = req.query;
     
     let response = null;
@@ -29,6 +29,15 @@ export const getUsers = async (req, res) => {
     }
            
     return res.status(200).send({ response });
+};
+
+export const createUser = (req, res) => {
+
+    console.log(req.body);
+
+
+    return res.status(200).send({ msg: 'OK! createUser'});
+
 };
 
 
