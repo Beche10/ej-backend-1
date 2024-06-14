@@ -18,19 +18,17 @@ export const getMe = async (req, res) => {
 
 export const getUsers = async (req, res) => {
     const { active } = req.query;
+    
     let response = null;
 
     if(active === undefined) {
         response = usersDb;
     } else {
-
         const isActive = active.toLowerCase() === 'true';
         response = usersDb.filter(user => user.active === isActive);
     }
-
-    console.log(response);
-        
-    return res.status(200).send({ msg: 'Ok' })
+           
+    return res.status(200).send({ response });
 };
 
 
