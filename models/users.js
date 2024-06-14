@@ -29,7 +29,8 @@ export class User {
     const salt = bcrypt.genSaltSync(10);
     const hashedInitialPassword = bcrypt.hashSync(initialPassword, salt);
 
-export const usersDb = [{
+export const usersDb = [
+{
     id: 1,
     firstname: "Augusto",
     lastname: "Villegas",
@@ -38,4 +39,17 @@ export const usersDb = [{
     role: "user",
     active: true,
     avatar: ""
-}];
+},
+{
+    id: 2,
+    firstname: "Javier",
+    lastname: "Milei",
+    email: "mileij@gmail.com",
+    password: hashedInitialPassword,
+    role: "user",
+    active: false,
+    avatar: ""
+}
+
+
+];
