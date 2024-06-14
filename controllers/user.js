@@ -1,4 +1,6 @@
+import bcrypt from 'bcryptjs';
 import { usersDb } from '../models/users.js';
+import { User } from '../models/users.js';
 
 
 export const getMe = (req, res) => {
@@ -33,10 +35,16 @@ export const getUsers = (req, res) => {
 
 export const createUser = (req, res) => {
 
-    console.log(req.body);
+    const { password } = req.body;
 
+    const salt = bcrypt.genSaltSync(10);
+    const hashPassword = bcrypt.hashSync(password, salt);
 
-    return res.status(200).send({ msg: 'OK! createUser'});
+    const user = new User ({...req.body, active: false, password: hashPassword })
+
+    
+
+    return res.status(200).send({ user });
 
 };
 
