@@ -50,6 +50,4 @@ export const usersDb = [
     active: false,
     avatar: ""
 }
-
-
 ];
