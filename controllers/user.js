@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { usersDb } from '../models/users.js';
 import { User } from '../models/users.js';
+import { getFilePath } from '../utils/image.js'; 
 
 
 export const getMe = (req, res) => {
@@ -35,20 +36,25 @@ export const getUsers = (req, res) => {
 
 export const createUser = (req, res) => {
 
-    const { password }  = req.body;
+    const { firstname, lastname, email, password, role, active, avatar }  = req.body;
     
     const salt = bcrypt.genSaltSync(10);
     const hashPassword = bcrypt.hashSync(password, salt);
 
     const user = new User({
-        ...req.body, 
-        active: false, 
-        password: hashPassword 
+        firstname,
+        lastname,
+        email,
+        password: hashPassword,
+        role,
+        active: false,
+        avatar        
     });
     
     
-    if(req.files.avatar) {
-        console.log('Procesar imagen de avatar');
+    if (req.files.avatar) {
+        const imagePath = getFilePath(req.files.avatar);
+        user.avatar = imagePath;
     };
 
     usersDb.push(user);
