@@ -35,26 +35,26 @@ export const getUsers = (req, res) => {
 
 export const createUser = (req, res) => {
 
-    const { password } = req.body;
+    const { password }  = req.body;
     
     const salt = bcrypt.genSaltSync(10);
     const hashPassword = bcrypt.hashSync(password, salt);
 
-    const user = new User ({
+    const user = new User({
         ...req.body, 
         active: false, 
         password: hashPassword 
     });
     
-
-
+    
     if(req.files.avatar) {
         console.log('Procesar imagen de avatar');
-    }
+    };
 
     usersDb.push(user);
-    console.log(user);
-    return res.status(200).send({ user });
+    
+
+    return res.status(200).send({ msg: user });
 
 };
 

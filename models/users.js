@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 
 export class User {
     constructor(firstname, lastname, email, password, role, active, avatar) {
-        this.id = User.incrementId(); /* Para generar un ID único */
+        this.id = User.incrementId();
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -13,8 +13,12 @@ export class User {
     };
 
     static incrementId() {
-        if (!this.latestId) this.latestId = 1;
-        else this.latestId++;
+        if (!this.latestId) {
+            const maxId = usersDb.reduce((max, user) => (user.id > max ? user.id : max),0);
+            this.latestId = maxId + 1;
+        } else {
+            this.latestId++;
+        }
         return this.latestId;
     };
 
