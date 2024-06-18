@@ -26,7 +26,7 @@ export class User {
         const salt = bcrypt.genSaltSync(10);
         const hashPassword = bcrypt.hashSync(password, salt);
         return new User(firstname, lastname, email, hashPassword, role, active = true, avatar);
-    }
+    };
 };
 
     const initialPassword = "123456";

@@ -38,19 +38,20 @@ export const createUser = (req, res) => {
 
     const { firstname, lastname, email, password, role, active, avatar }  = req.body;
     
-    const salt = bcrypt.genSaltSync(10);
-    const hashPassword = bcrypt.hashSync(password, salt);
+    //const salt = bcrypt.genSaltSync(10);
+    //const hashPassword = bcrypt.hashSync(password, salt);
 
-    const user = new User({
+    const user = User.createUser(
         firstname,
         lastname,
         email,
-        password: hashPassword,
+        password,
         role,
-        active: false,
-        avatar        
-    });
+        false,
+        ''        
+    );
     
+    console.log(user);
     
     if (req.files.avatar) {
         const imagePath = getFilePath(req.files.avatar);
