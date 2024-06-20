@@ -31,3 +31,8 @@ Manejo de Errores:
 
 - validationErrorResponse: Envía una respuesta de error de validación.
 - handleErrors: Middleware para manejo de errores global.
+
+Etapa 3
+
+- JWT
+- Sistema de usuarios

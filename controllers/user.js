@@ -94,3 +94,19 @@ export const updateUser = (req, res) => {
 
     return res.status(200).send({ msg: 'Actualización correcta', user });
 };
+
+
+export const deleteUsers = (req, res) => {
+    const { id } = req.params;
+    const userIndex = usersDb.findIndex(user => user.id === parseInt(id));
+
+    if (userIndex === -1) {
+        return res.status(400).send({ msg: 'Usuario no encontrado' });
+    };
+
+    const deletedUser = usersDb.splice(userIndex, 1)[0]; 
+
+    console.log(usersDb);
+
+    return res.status(200).send({ msg: 'Usuario eliminado', deletedUser });
+};
